@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>System.Private.CoreLib_Plugs</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="IL2CPU.API" Version="0-*" />
+  </ItemGroup>
+</Project>
