@@ -13,7 +13,6 @@
         {
             bus = new Bus(this);
             state = new State(bus);
-            var fs = new CosmosVFS();
         }
 
         protected override void Run()
