@@ -6,7 +6,7 @@
     public class Bus
     {
         public State State { get; set; }
-        public Kernel Kernel { get; set; }
+        public Kernel kernel { get; set; }
 
         public Device[] Devices = new Device[16];
 
@@ -14,7 +14,7 @@
         public Bus(Kernel kernel)
         {
             State = new State(this);
-            Kernel = kernel;
+            this.kernel = kernel;
 
 
             //Add(new BIOS(this));

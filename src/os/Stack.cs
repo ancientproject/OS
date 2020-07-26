@@ -14,7 +14,7 @@
         public void push(ulong data)
         {
             if (_provider.SP >= 0x400)
-                _bus.Kernel.halt(0xA2);
+                _bus.kernel.halt(0xA2);
 
             if (_provider.southFlag && _bus.find(0x45).read(0xF3) == 0x1)
             {
@@ -34,7 +34,7 @@
         internal void push2(ulong data)
         {
             if (_provider.SP >= 0x400)
-                _bus.Kernel.halt(0xA2);
+                _bus.kernel.halt(0xA2);
             data &= 0xFF;
             _provider.SP++;
             _bus.find(0x0).write(_provider.SP + 0x100, data);
@@ -58,7 +58,7 @@
         public ulong pop()
         {
             if (_provider.SP <= 0)
-                _bus.Kernel.halt(0xA3);
+                _bus.kernel.halt(0xA3);
             if (_provider.southFlag && _bus.find(0x45).read(0xF3) == 0x1)
             {
                 _provider.SP--;
@@ -75,9 +75,9 @@
         internal ulong pop2()
         {
             if (_provider.SP <= 0)
-                _bus.Kernel.halt(0xA3);
+                _bus.kernel.halt(0xA3);
             if (_provider.SP >= 0x400)
-                _bus.Kernel.halt(0xA2);
+                _bus.kernel.halt(0xA2);
             var res = _bus.find(0x0).read(_provider.SP--+ 0x100);
             return res;
         }

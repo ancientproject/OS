@@ -11,7 +11,7 @@
 
         public Memory(int startAddress, int endAddress, Bus bus) : base(0x0, "<ddr>")
         {
-            _kernel = bus.Kernel;
+            _kernel = bus.kernel;
             // 512kb max
             if (endAddress >= 0x100000)
                 _kernel.halt(0xBD);
