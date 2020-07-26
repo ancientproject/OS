@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Drawing;
-    using System.Linq;
     using exceptions;
     using static System.Console;
     public class State
@@ -115,6 +114,39 @@
                         _ => mem[r1] = i64 | ((u2 << 4) | u1)
                     };
                     break;
+                case 0xF when new[] { r1, r2, r3, u1, u2, x1 }.All(x => x == 0xF):
+                    bus.kernel.halt(0xF);
+                    break;
+
+                case 0xD when r1 == 0xE && r2 == 0xA && r3 == 0xD:
+                    bus.kernel.halt(0x0);
+                    break;
+
+                case 0xB when r1 == 0x0 && r2 == 0x0 && r3 == 0xB && u1 == 0x5:
+                    bus.kernel.halt(0x1);
+                    break;
+
+                case 0x1 when x2 == 0xA:
+                    trace($"call :: ldx 0x{u1:X}, 0x{u2:X} -> 0x{r1:X}-0x{r2:X}");
+                    mem[((r1 << 4) | r2)] = i64 | ((u1 << 4) | u2);
+                    break;
+
+                case 0x3: /* @swap */
+                    trace($"call :: swap, 0x{r1:X}, 0x{r2:X}");
+                    mem[r1] ^= mem[r2];
+                    mem[r2] = mem[r1] ^ mem[r2];
+                    mem[r1] ^= mem[r2];
+                    break;
+
+                case 0xF when x2 == 0xE: // 0xF9988E0
+                    trace($"call :: move, dev[0x{r1:X}] -> 0x{r2:X} -> 0x{u1:X}");
+                    bus.find(r1 & 0xFF).write(r2 & 0xFF, i32 & mem[u1] & 0xFF);
+                    break;
+
+                case 0xF when x2 == 0xC: // 0xF00000C
+                    trace($"call :: move, dev[0x{r1:X}] -> 0x{r2:X} -> [0x{u1:X}-0x{u2:X}]");
+                    bus.find(r1 & 0xFF).write(r2 & 0xFF, (r3 << 12 | u1 << 8 | u2 << 4 | x1) & 0xFFFFFFF);
+                    break;
             }
         }
 
@@ -134,10 +166,10 @@
                 if (halt != 0) return 0;
                 lastAddr = curAddr;
                 if (++step == 0x90000)
-                    return (ulong)bus.Kernel.halt(0x2);
+                    return (ulong)bus.kernel.halt(0x2);
                 if (bus.find(0x0).read(0x599) != pc - 0x600)
                     return curAddr = bus.find(0x0).read(pc++);
-                return (ulong)bus.Kernel.halt(0x77);
+                return (ulong)bus.kernel.halt(0x77);
             }
             catch
             {
