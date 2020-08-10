@@ -31,7 +31,8 @@
     </PropertyGroup>
 
     <PropertyGroup>
-      <_plugPath>..\plugs\System.Number\bin\Debug\netstandard2.0\System.Private.CoreLib_Plugs.dll</_plugPath>
+      <_repoRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))</_repoRoot>
+      <_plugPath>$(_repoRoot)\..\plugs\System.Number\bin\Debug\netstandard2.0\System.Private.CoreLib_Plugs.dll</_plugPath>
       <_plugPathResolved>$([System.IO.Path]::GetFullPath($(_plugPath)))</_plugPathResolved>
     </PropertyGroup>
 
@@ -42,7 +43,6 @@
     </ItemGroup>
 
     <ItemGroup>
-
       <PlugsReference Include="$(_plugPathResolved)" />
       <ProjectReference Include="..\plugs\System.Number\System.Private.CoreLib.csproj">
         <IsPlugsReference>true</IsPlugsReference>
