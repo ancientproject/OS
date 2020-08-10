@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VMHub", "src\os\VMHub.cspro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Private.CoreLib", "src\plugs\System.Number\System.Private.CoreLib.csproj", "{F7368DF1-F892-46CE-87E7-C1BCC4F0AEA8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{21979110-6E57-411C-B264-E7C2F25AEA49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linqTest", "test\linqTest\linqTest.csproj", "{C467D470-4ED4-44F2-8AE3-41D7171EA20F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +27,17 @@ Global
 		{F7368DF1-F892-46CE-87E7-C1BCC4F0AEA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7368DF1-F892-46CE-87E7-C1BCC4F0AEA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7368DF1-F892-46CE-87E7-C1BCC4F0AEA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C467D470-4ED4-44F2-8AE3-41D7171EA20F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C467D470-4ED4-44F2-8AE3-41D7171EA20F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C467D470-4ED4-44F2-8AE3-41D7171EA20F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C467D470-4ED4-44F2-8AE3-41D7171EA20F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F7368DF1-F892-46CE-87E7-C1BCC4F0AEA8} = {87291700-4C51-4295-BBC7-D90FCFD1C2CC}
+		{C467D470-4ED4-44F2-8AE3-41D7171EA20F} = {21979110-6E57-411C-B264-E7C2F25AEA49}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {87B210E3-7890-41F2-97BC-805DF118F10E}
